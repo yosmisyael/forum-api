@@ -1,0 +1,7 @@
+node_modules
+coverage
+integration-test
+.idea
+package-lock.json
+.env
+.env.test
