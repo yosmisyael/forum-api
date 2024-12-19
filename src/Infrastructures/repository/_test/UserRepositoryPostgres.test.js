@@ -4,6 +4,7 @@ const RegisterUser = require('../../../Domains/users/entities/RegisterUser');
 const RegisteredUser = require('../../../Domains/users/entities/RegisteredUser');
 const pool = require('../../database/postgres/pool');
 const UserRepositoryPostgres = require('../UserRepositoryPostgres');
+const bcrypt = require('bcrypt');
 
 describe('UserRepositoryPostgres', () => {
   afterEach(async () => {
@@ -95,7 +96,9 @@ describe('UserRepositoryPostgres', () => {
 
       // Action & Assert
       const password = await userRepositoryPostgres.getPasswordByUsername('dicoding');
-      expect(password).toBe('secret_password');
+      expect(password).toBeDefined();
+      expect(typeof password === 'string').toBeTruthy();
+      expect(bcrypt.compare('secret_password', password)).toBeTruthy();
     });
   });
 
