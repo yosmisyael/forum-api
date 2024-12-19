@@ -91,12 +91,6 @@ const createServer = async (container) => {
     return h.continue;
   });
 
-  server.events.on('stop', async () => {
-    if (container.database) {
-      await container.database.close();
-    }
-  });
-
   return server;
 };
 
