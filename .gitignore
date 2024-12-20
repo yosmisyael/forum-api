@@ -5,4 +5,3 @@ integration-test
 package-lock.json
 .env
 .env.test
-*.yml
