@@ -17,7 +17,7 @@ class LikeRepositoryPostgres extends LikeRepository {
             values: [id, userId, commentId],
         };
 
-        return this._pool.query(query);
+        await this._pool.query(query);
     }
 
     async deleteLike(likeId) {
