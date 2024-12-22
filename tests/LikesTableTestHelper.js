@@ -15,6 +15,15 @@ const LikesTableTestHelper = {
         await pool.query(query);
     },
 
+    async findLikeByCommentId(commentId = 'comment-123') {
+        const query = {
+            text: 'SELECT id FROM likes WHEERE commentId = $1',
+            values: [commentId],
+        }
+
+        return pool.query(query);
+    },
+
     async cleanTable() {
         const query = {
             text: 'DELETE FROM likes',
