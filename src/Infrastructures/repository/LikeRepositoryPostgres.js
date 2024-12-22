@@ -30,7 +30,14 @@ class LikeRepositoryPostgres extends LikeRepository {
     }
 
     async verifyLikeExists(ownerId, commentId) {
-        throw new Error('LIKE_REPOSITORY.METHOD_NOT_IMPLEMENTED');
+        const query = {
+            text: 'SELECT FROM likes WHERE owner = $1 OR comment_id = $2',
+            values: [ownerId, commentId],
+        }
+
+        const { rowCount } = await this._pool.query(query);
+
+        return Boolean(rowCount);
     }
 
     async getLikesByCommentId(commentId) {
