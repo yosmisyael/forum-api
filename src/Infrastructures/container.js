@@ -331,6 +331,14 @@ container.register([
           name: 'likeRepository',
           internal: LikeRepository.name,
         },
+        {
+          name: 'threadRepository',
+          internal: ThreadRepository.name,
+        },
+        {
+          name: 'commentRepository',
+          internal: CommentRepository.name,
+        }
       ],
     }
   }
