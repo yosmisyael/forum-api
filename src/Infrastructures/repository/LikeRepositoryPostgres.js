@@ -21,7 +21,12 @@ class LikeRepositoryPostgres extends LikeRepository {
     }
 
     async deleteLike(likeId) {
-        throw new Error('LIKE_REPOSITORY.METHOD_NOT_IMPLEMENTED');
+        const query = {
+            text: 'DELETE FROM likes WHERE id = $1',
+            values: [likeId],
+        };
+
+        await this._pool.query(query);
     }
 
     async verifyLikeExists(ownerId, commentId) {
