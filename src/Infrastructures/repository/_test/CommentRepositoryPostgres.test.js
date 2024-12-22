@@ -60,7 +60,7 @@ describe('CommentRepositoryPostgres', () => {
         });
     });
 
-    describe('getCommentByThreadId', () => {
+    describe('getCommentByThreadId function', () => {
         it('should return comments correctly', async () => {
             // Arrange
             await CommentsTableTestHelper.addComment({
@@ -139,7 +139,7 @@ describe('CommentRepositoryPostgres', () => {
         });
     });
 
-    describe('deleteCommentById', () => {
+    describe('deleteCommentById function', () => {
         it('should be able to delete comment', async () => {
             // Arrange
             await CommentsTableTestHelper.addComment({
