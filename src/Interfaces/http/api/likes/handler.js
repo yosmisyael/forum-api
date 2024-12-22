@@ -13,9 +13,9 @@ class LikeHandler {
 
         const { id: ownerId } = request.auth.credentials;
 
-        const { threadId, commendId } = request.params;
+        const { threadId, commentId } = request.params;
 
-        await likeUseCase.execute(ownerId, threadId, commendId);
+        await likeUseCase.execute(ownerId, threadId, commentId);
 
         const response = h.response({
             status: 'success',
