@@ -84,4 +84,25 @@ describe('LikeRepositoryPostgres', () => {
             expect(isLikeExist).toBe(true);
         });
     });
+
+    describe('getLikesByCommentId function', () => {
+        beforeEach(async () => {
+            for (let i = 0; i < 3; i++) {
+                await LikesTableTestHelper.addLike({
+                    id: `likes-${i}`
+                });
+            }
+        });
+
+        it('should be able to get likes by comment id', async () => {
+            // Arrange
+            const likeRepositoryPostgres = new LikeRepositoryPostgres(pool, () => {});
+
+            // Action
+            const likesCount = await likeRepositoryPostgres.getLikesByCommentId('comment-123');
+
+            // Assert
+            expect(likesCount).toBe(3);
+        });
+    });
 });
