@@ -68,9 +68,10 @@ class CommentRepositoryPostgres extends CommentRepository {
         const query = {
             text: `
         SELECT comments.id, users.username, comments.date, comments.is_delete, 
-               comments.content
+               comments.content, COUNT(likes.comment_id) AS like_count
         FROM comments
         INNER JOIN users ON comments.owner = users.id
+        LEFT JOIN likes ON comments.id = likes.comment_id
         WHERE comments.thread_id = $1
         GROUP BY comments.id, users.username, comments.date
         ORDER BY comments.date ASC
