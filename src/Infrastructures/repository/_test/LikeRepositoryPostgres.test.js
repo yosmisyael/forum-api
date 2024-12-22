@@ -37,7 +37,6 @@ describe('LikeRepositoryPostgres', () => {
 
             // Action
             await likeRepositoryPostgres.addLike('user-123', 'comment-123');
-            // return console.log(likeOri);
 
             // Assert
             const likes = await LikesTableTestHelper.findLikesByCommentId('comment-123');
