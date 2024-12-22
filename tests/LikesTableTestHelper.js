@@ -21,7 +21,9 @@ const LikesTableTestHelper = {
             values: [commentId],
         }
 
-        return pool.query(query);
+        const result = pool.query(query);
+
+        return result.rows;
     },
 
     async cleanTable() {
