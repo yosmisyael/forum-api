@@ -15,13 +15,13 @@ const LikesTableTestHelper = {
         await pool.query(query);
     },
 
-    async findLikeByCommentId(commentId = 'comment-123') {
+    async findLikesByCommentId(commentId = 'comment-123') {
         const query = {
             text: 'SELECT id FROM likes WHERE comment_id = $1',
             values: [commentId],
         }
 
-        const result = pool.query(query);
+        const result = await pool.query(query);
 
         return result.rows;
     },
