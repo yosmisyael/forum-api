@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node src/app.js",
-    "start:dev": "nodemon src/app.js",
+    "start:dev": "NODE_ENV=development nodemon src/app.js",
     "test": "DOTENV_CONFIG_PATH=.env.test jest --setupFiles dotenv/config -i",
     "test:watch:change": "DOTENV_CONFIG_PATH=.env.test jest --watch --setupFiles dotenv/config -i",
     "test:watch": "DOTENV_CONFIG_PATH=.env.test jest --watchAll --coverage --setupFiles dotenv/config -i",
