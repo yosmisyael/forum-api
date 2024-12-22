@@ -8,7 +8,7 @@ describe('ReplyRepository interface', () => {
             .rejects
             .toThrow('LIKE_REPOSITORY.METHOD_NOT_IMPLEMENTED');
 
-        await expect(likeRepository.deleteLike(''))
+        await expect(likeRepository.deleteLike('', ''))
             .rejects
             .toThrow('LIKE_REPOSITORY.METHOD_NOT_IMPLEMENTED');
 
