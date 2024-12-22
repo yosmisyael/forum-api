@@ -30,6 +30,7 @@ describe('GetDetailThreadUseCase', () => {
                 date: 'test-date-comment-1',
                 is_delete: false,
                 content: 'Test comment one',
+                like_count: 0,
             },
             {
                 id: 'comment-456',
@@ -37,6 +38,7 @@ describe('GetDetailThreadUseCase', () => {
                 date: 'test-date-comment-2',
                 is_delete: true,
                 content: 'this is second comment on a thread',
+                like_count: 0,
             },
         ];
 
@@ -106,6 +108,7 @@ describe('GetDetailThreadUseCase', () => {
                     username: 'angelina',
                     date: 'test-date-comment-1',
                     isDelete: false,
+                    likeCount: 0,
                     replies: [
                         new DetailReply({
                             id: 'reply-123',
@@ -128,6 +131,7 @@ describe('GetDetailThreadUseCase', () => {
                     username: 'george',
                     isDelete: true,
                     replies: [],
+                    likeCount: 0,
                 }),
             ],
         }));
@@ -154,7 +158,8 @@ describe('GetDetailThreadUseCase', () => {
                     username: 'angelina',
                 }),
             ],
-        }),);
+            likeCount: 0,
+        }));
 
         expect(detailThread.comments[1]).toStrictEqual(new DetailComment({
             content: '**komentar telah dihapus**',
@@ -163,7 +168,8 @@ describe('GetDetailThreadUseCase', () => {
             username: 'george',
             isDelete: true,
             replies: [],
-        }),);
+            likeCount: 0,
+        }));
 
         expect(detailThread.comments[0].replies).toHaveLength(2);
 

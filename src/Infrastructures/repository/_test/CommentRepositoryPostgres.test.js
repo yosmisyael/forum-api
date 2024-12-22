@@ -60,13 +60,14 @@ describe('CommentRepositoryPostgres', () => {
         });
     });
 
-    describe('getCommentByThreadId', () => {
+    describe('getCommentByThreadId function', () => {
         it('should return comments correctly', async () => {
             // Arrange
             await CommentsTableTestHelper.addComment({
                 id: 'comment-123',
                 content: 'test-first-comment',
             });
+
             await CommentsTableTestHelper.addComment({
                 id: 'comment-456',
                 content: 'test-second-comment',
@@ -88,13 +89,16 @@ describe('CommentRepositoryPostgres', () => {
                 content: 'test-first-comment',
                 is_delete: false,
                 date: expect.any(String),
+                like_count: '0',
             });
+
             expect(comments[1]).toStrictEqual({
                 id: 'comment-456',
                 username: 'dicoding',
                 content: 'test-second-comment',
                 is_delete: false,
                 date: expect.any(String),
+                like_count: '0',
             });
         });
 
@@ -135,7 +139,7 @@ describe('CommentRepositoryPostgres', () => {
         });
     });
 
-    describe('deleteCommentById', () => {
+    describe('deleteCommentById function', () => {
         it('should be able to delete comment', async () => {
             // Arrange
             await CommentsTableTestHelper.addComment({

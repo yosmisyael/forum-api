@@ -14,11 +14,13 @@ const PasswordHash = require('../Applications/security/PasswordHash');
 const UserRepositoryPostgres = require('./repository/UserRepositoryPostgres');
 const BcryptPasswordHash = require('./security/BcryptPasswordHash');
 const ThreadRepository = require('../Domains/threads/ThreadRepository');
-const CommentRepository = require('../Domains/comments/CommentRepository');
-const ReplyRepository = require('../Domains/replies/ReplyRepository');
 const ThreadRepositoryPostgres = require('./repository/ThreadRepositoryPostgres');
+const CommentRepository = require('../Domains/comments/CommentRepository');
 const CommentRepositoryPostgres = require('./repository/CommentRepositoryPostgres');
+const ReplyRepository = require('../Domains/replies/ReplyRepository');
 const ReplyRepositoryPostgres = require('./repository/ReplyRepositoryPostgres');
+const LikeRepository = require('../Domains/likes/LikeRepository');
+const LikeRepositoryPostgres = require('./repository/LikeRepositoryPostgres');
 
 // use case
 const AuthenticationTokenManager = require('../Applications/security/AuthenticationTokenManager');
@@ -35,6 +37,7 @@ const AddCommentUseCase = require('../Applications/use_case/AddCommentUseCase');
 const DeleteCommentUseCase = require('../Applications/use_case/DeleteCommentUseCase');
 const AddReplyUseCase = require('../Applications/use_case/AddReplyUseCase');
 const DeleteReplyUseCase = require('../Applications/use_case/DeleteReplyUseCase');
+const LikeUseCase = require('../Applications/use_case/LikeUseCase');
 
 // creating container
 const container = createContainer();
@@ -129,6 +132,20 @@ container.register([
         }
       ],
     }
+  },
+  {
+    key: LikeRepository.name,
+    Class: LikeRepositoryPostgres,
+    parameter: {
+      dependencies: [
+        {
+          concrete: pool,
+        },
+        {
+          concrete: nanoid,
+        },
+      ]
+    },
   }
 ]);
 
@@ -304,6 +321,27 @@ container.register([
       ],
     },
   },
+  {
+    key: LikeUseCase.name,
+    Class: LikeUseCase,
+    parameter: {
+      injectType: 'destructuring',
+      dependencies: [
+        {
+          name: 'likeRepository',
+          internal: LikeRepository.name,
+        },
+        {
+          name: 'threadRepository',
+          internal: ThreadRepository.name,
+        },
+        {
+          name: 'commentRepository',
+          internal: CommentRepository.name,
+        }
+      ],
+    }
+  }
 ]);
 
 module.exports = container;

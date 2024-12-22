@@ -37,6 +37,7 @@ class GetDetailThreadUseCase {
                         content: comment.is_delete ? '**komentar telah dihapus**' : comment.content,
                         replies: [],
                         isDelete: comment.is_delete,
+                        likeCount: parseInt(comment.like_count),
                     });
 
                     const repliesInComment = await this._replyRepository.getRepliesByCommentId(
