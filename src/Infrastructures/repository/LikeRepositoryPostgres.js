@@ -31,7 +31,7 @@ class LikeRepositoryPostgres extends LikeRepository {
 
     async verifyLikeExists(ownerId, commentId) {
         const query = {
-            text: 'SELECT FROM likes WHERE owner = $1 OR comment_id = $2',
+            text: 'SELECT id FROM likes WHERE owner = $1 OR comment_id = $2',
             values: [ownerId, commentId],
         }
 
