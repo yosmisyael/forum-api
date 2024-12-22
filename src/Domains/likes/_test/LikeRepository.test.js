@@ -4,7 +4,7 @@ describe('ReplyRepository interface', () => {
     it('should throw error when invoke abstract behavior', async () => {
         const likeRepository = new LikeRepository();
 
-        await expect(likeRepository.addLike('', '', ''))
+        await expect(likeRepository.addLike('', ''))
             .rejects
             .toThrow('LIKE_REPOSITORY.METHOD_NOT_IMPLEMENTED');
 

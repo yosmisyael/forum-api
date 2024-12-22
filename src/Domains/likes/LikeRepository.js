@@ -1,5 +1,5 @@
 class LikeRepository {
-    async addLike(userId, threadId, commentId) {
+    async addLike(userId, commentId) {
         throw new Error('LIKE_REPOSITORY.METHOD_NOT_IMPLEMENTED');
     }
 
