@@ -59,7 +59,7 @@ describe('LikeRepositoryPostgres', () => {
             const likeRepositoryPostgres = new LikeRepositoryPostgres(pool, idFaker);
 
             // Action
-            await likeRepositoryPostgres.deleteLike('like-123');
+            await likeRepositoryPostgres.deleteLike('user-123', 'comment-123');
 
             // Assert
             const likes = await LikesTableTestHelper.findLikesByCommentId('comment-123');
