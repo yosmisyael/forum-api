@@ -23,6 +23,7 @@ describe('a DetailComment entities', () => {
             content: 1,
             replies: [],
             isDelete: 'not boolean',
+            likeCount: 0,
         };
 
         expect(() => new DetailComment(payload)).toThrow(
@@ -38,6 +39,7 @@ describe('a DetailComment entities', () => {
             content: 'test-content',
             replies: [],
             isDelete: false,
+            likeCount: 0,
         };
 
         const {
@@ -59,6 +61,7 @@ describe('a DetailComment entities', () => {
             content: 'test-content',
             replies: [],
             isDelete: true,
+            likeCount: 0,
         };
 
         const {
@@ -79,6 +82,7 @@ describe('a DetailComment entities', () => {
             date: 'test-date',
             content: 'test-content',
             isDelete: false,
+            likeCount: 0,
         };
 
         const { replies } = new DetailComment(payload);
@@ -86,7 +90,6 @@ describe('a DetailComment entities', () => {
         expect(replies).toStrictEqual([]);
     });
 
-    // Pengujian untuk metode _remapPayload
     it('should remap content correctly based on isDelete value', () => {
         const payloadWithDeleteTrue = {
             id: 'test-comment',
@@ -95,6 +98,7 @@ describe('a DetailComment entities', () => {
             content: 'test-delete-comment',
             replies: [],
             isDelete: true,
+            likeCount: 0,
         };
 
         const payloadWithDeleteFalse = {
@@ -104,6 +108,7 @@ describe('a DetailComment entities', () => {
             content: 'test-content',
             replies: [],
             isDelete: false,
+            likeCount: 0,
         };
 
         const deletedComment = new DetailComment(payloadWithDeleteTrue);
