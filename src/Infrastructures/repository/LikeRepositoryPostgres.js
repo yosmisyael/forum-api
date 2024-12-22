@@ -10,7 +10,14 @@ class LikeRepositoryPostgres extends LikeRepository {
     }
 
     async addLike(userId, commentId) {
-        throw new Error('LIKE_REPOSITORY.METHOD_NOT_IMPLEMENTED');
+        const id = `like-${this._idGenerator()}`;
+
+        const query = {
+            text: 'INSERT INTO likes VALUES ($1, $2, $3)',
+            values: [id, userId, commentId],
+        };
+
+        return this._pool.query(query);
     }
 
     async deleteLike(likeId) {
