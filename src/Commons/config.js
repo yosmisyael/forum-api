@@ -1,7 +1,7 @@
 const dotenv = require("dotenv");
 const path = require("path");
 
-if (process.env.NODE_ENV === 'test') {
+if (process.env.NODE_ENV === 'development') {
     dotenv.config({
         path: path.resolve(process.cwd(), '.env.test')
     });
@@ -11,9 +11,8 @@ if (process.env.NODE_ENV === 'test') {
 
 const config = {
     app: {
-        host: process.env.NODE_ENV !== 'production' ? 'localhost' : '0.0.0.0',
+        host: process.env.HOST,
         port: process.env.PORT,
-        debug: process.env.NODE_ENV === 'development' ? { request: ['error'] } : {},
     },
     database: {
         host: process.env.PGHOST,
