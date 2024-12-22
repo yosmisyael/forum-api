@@ -41,7 +41,14 @@ class LikeRepositoryPostgres extends LikeRepository {
     }
 
     async getLikesByCommentId(commentId) {
-        throw new Error('LIKE_REPOSITORY.METHOD_NOT_IMPLEMENTED');
+        const query = {
+            text: 'SELECT id FROM likes WHERE comment_id = $1',
+            values: [commentId],
+        }
+
+        const { rowCount } = await this._pool.query(query);
+
+        return rowCount;
     }
 
 }
