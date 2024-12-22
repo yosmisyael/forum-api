@@ -12,7 +12,7 @@ describe('ReplyRepository interface', () => {
             .rejects
             .toThrow('LIKE_REPOSITORY.METHOD_NOT_IMPLEMENTED');
 
-        await expect(likeRepository.verifyLike('', '', ''))
+        await expect(likeRepository.verifyLikeExists('', ''))
             .rejects
             .toThrow('LIKE_REPOSITORY.METHOD_NOT_IMPLEMENTED');
 
