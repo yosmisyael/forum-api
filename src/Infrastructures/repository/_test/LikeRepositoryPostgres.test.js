@@ -67,4 +67,21 @@ describe('LikeRepositoryPostgres', () => {
             expect(likes.length).toBe(0);
         })
     });
+
+    describe('verifyLikeExists function', () => {
+        beforeEach(async () => {
+            await LikesTableTestHelper.addLike({});
+        });
+
+        it('should be able to verify like existence', async () => {
+            // Arrange
+            const likeRepositoryPostgres = new LikeRepositoryPostgres(pool, () => {});
+
+            // Action
+            const isLikeExist = await likeRepositoryPostgres.verifyLikeExists('user-123', 'comment-123');
+
+            // Assert
+            expect(isLikeExist).toBe(true);
+        });
+    });
 });
