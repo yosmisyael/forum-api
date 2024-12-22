@@ -40,9 +40,31 @@ describe('LikeRepositoryPostgres', () => {
 
             // Assert
             const likes = await LikesTableTestHelper.findLikesByCommentId('comment-123');
+
             expect(likes.length).toBe(1);
 
             expect(likes[0].id).toBe('like-1');
+        })
+    });
+
+    describe('deleteLike function', () => {
+        beforeEach(async () => {
+            await LikesTableTestHelper.addLike({});
+        });
+
+        it('should be able to delete like', async () => {
+            // Arrange
+            const idFaker = () => '1';
+
+            const likeRepositoryPostgres = new LikeRepositoryPostgres(pool, idFaker);
+
+            // Action
+            await likeRepositoryPostgres.deleteLike('like-123');
+
+            // Assert
+            const likes = await LikesTableTestHelper.findLikesByCommentId('comment-123');
+
+            expect(likes.length).toBe(0);
         })
     });
 });
