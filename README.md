@@ -58,13 +58,22 @@ RESTful API for forum application as a submission to the Dicoding course "Menjad
    | ACCESS_TOKEN_KEY        |   true   | JWT access token key  |
    | REFRESH_TOKEN_KEY        |   true   | JWT refresh token key |
    | ACCCESS_TOKEN_AGE        |   true   | JWT token age         |
-4. Run the application
+4. Setup database
+   ```postgresql
+   CREATE DATABASE forum_api, forum_api_test;
+   ```
+5. Run database migration
+   ```shell
+   npm run migrate up
+   ```
+6. Run the application
    ```sh
    # run unit testing
    npm run test
    # run the application
    npm run start  
    ```
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
